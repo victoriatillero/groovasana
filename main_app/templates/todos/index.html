@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/todos/todo-index.css' %}"/>
+{% endblock %}
+{% block content %}
+<section class="page-header">
+  <h1>To Do List</h1>
+  <img
+    src="{% static 'images/tags/briefcase .png' %}"
+    alt="Professional tasks"
+  />
+  <img
+    src="{% static 'images/tags/studying.png' %}"
+    alt="study tasks"
+    />
+    <img
+      src="{% static 'images/tags/creative_projects.png' %}"
+      alt="Creative Projects"
+    />
+    <img
+      src="{% static 'images/tags/self-care.png' %}"
+      alt="self-care Tasks"
+    />
+  <img
+    src="{% static 'images/tags/friendship.png' %}"
+    alt="friendship tasks"
+  />
+  <img
+    src="{% static 'images/tags/relationship.png' %}"
+    alt="Relationship Tasks"
+  />
+</section>
+
+<section class="card-container">
+  {% for todo in todos %}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img src="{% static 'images/checklist.png' %}" alt="checklist icon" />
+      </div>
+      <h2 class="card-title">{{ todo.name }}</h2>
+      <p><strong>Due:</strong> {{ todo.day }}</p>
+      <p><strong>Priority:</strong> {{ todo.priority }}</p>
+      <p><strong>Tags:</strong> {{ todo.tags }}</p>
+      <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
+      <p><small>{{ todo.description }}</small></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

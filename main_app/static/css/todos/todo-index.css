@@ -79,6 +79,10 @@
   margin: 3px 0;
   line-height: 1;
 }
+.text-zone h2 {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
 
 .priority-line {
   color: rgb(139, 17, 17);

@@ -39,14 +39,13 @@
   {% for todo in todos %}
   <div class="card-img-card">
     <div class="card-content">
-        <img src="{% static 'images/clip-board.jpg' %}" alt="kawaii clipboard" />
-        <div class="overlay">
-          <div class="text-zone">
-      <h2 class="card-title">{{ todo.name }}</h2>
-      <p><strong>Due:</strong> {{ todo.day }}</p>
-      <p class="priority-line"><strong>Priority:</strong> {{ todo.priority }}</p> <p><strong>Tags:</strong> {{ todo.tags }}</p>
-      <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
-      <p><small>{{ todo.description }}</small></p>
+        <!-- <div class="overlay"> -->
+        <div class="text-zone">
+          <h2>{{ todo.name }}</h2>
+          <p><strong>Due:</strong> {{ todo.day }}</p>
+          <p class="priority-line"><strong>Priority:</strong> {{ todo.priority }}</p> <p><strong>Tags:</strong> {{ todo.tags }}</p>
+          <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
+          <p><small>{{ todo.description }}</small></p>
         </div>
       </div>
     </div>

@@ -8,10 +8,15 @@
 .card-img-card{
   position: relative;
   width: 275px;
-  height: 325px;
+  height: 300px;
   margin: 10px;
-  border: var(--card-border-radius);
-  box-shadow: var(--card-box-shadow);
+  background-image: url('../../images/Untitled_Artwork.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
   overflow: hidden;
 }
 
@@ -33,11 +38,11 @@
   background: rgba(0,0,0,0.3);
   overflow-y: auto;
 }
-
-.card-img-card .text-zone {
+/*
+ .card-img-card .text-zone {
   position: absolute;
-  top: 15%;
-  left: 32%;
+  top: 25%;
+  left: 20%;
   width: 55%;
   height: 60%;
   color: white;
@@ -48,7 +53,33 @@
   justify-content: flex-start;
   line-height: 1.1;
   color: #000;
+} */
+ .text-zone {
+  position: absolute;
+  top: 30%;
+  left: 32%;
+  width: 52%;
+  height: 60%;
+  /* line-height: .4; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #000;
+  text-align: left;
+  font-size: 0.9rem;
+  padding: 5px;
+  /* background-color: rgba(0,0,0,.2); */
+  overflow-wrap: break-word;
+  transform: skew(-2deg)
 }
+
+.text-zone h2,
+.text-zone p,
+.text-zone small {
+  margin: 3px 0;
+  line-height: 1;
+}
+
 .priority-line {
   color: rgb(139, 17, 17);
   font-weight: bold;

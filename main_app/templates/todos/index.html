@@ -22,6 +22,9 @@
       src="{% static 'images/tags/self-care.png' %}"
       alt="self-care Tasks"
     />
+    <img src="{% static 'images/tags/recipe.png' %}"
+    alt="frying pan"
+    />
   <img
     src="{% static 'images/tags/friendship.png' %}"
     alt="friendship tasks"
@@ -34,17 +37,18 @@
 
 <section class="card-container">
   {% for todo in todos %}
-  <div class="card">
+  <div class="card-img-card">
     <div class="card-content">
-      <div class="card-img-container">
-        <img src="{% static 'images/checklist.png' %}" alt="checklist icon" />
-      </div>
+        <img src="{% static 'images/clip-board.jpg' %}" alt="kawaii clipboard" />
+        <div class="overlay">
+          <div class="text-zone">
       <h2 class="card-title">{{ todo.name }}</h2>
       <p><strong>Due:</strong> {{ todo.day }}</p>
-      <p><strong>Priority:</strong> {{ todo.priority }}</p>
-      <p><strong>Tags:</strong> {{ todo.tags }}</p>
+      <p class="priority-line"><strong>Priority:</strong> {{ todo.priority }}</p> <p><strong>Tags:</strong> {{ todo.tags }}</p>
       <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
       <p><small>{{ todo.description }}</small></p>
+        </div>
+      </div>
     </div>
   </div>
   {% endfor %}

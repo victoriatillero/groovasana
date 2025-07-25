@@ -38,6 +38,7 @@
 <section class="card-container">
   {% for todo in todos %}
   <div class="card-img-card">
+    <a href="{% url 'todo-detail' todo.id%}">
     <div class="card-content">
         <!-- <div class="overlay"> -->
         <div class="text-zone">
@@ -49,6 +50,7 @@
         </div>
       </div>
     </div>
+  </a>
   </div>
   {% endfor %}
 </section>

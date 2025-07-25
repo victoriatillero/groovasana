@@ -18,9 +18,10 @@
     </a>
     <nav>
       <ul>
-        <li><a href="/about">About</a></li>
         <li><a href="/">Home</a></li>
-        <li> <a href="/todos"> To-Do's </a></li>
+        <li><a href="/about">About</a></li>
+        <li> <a href="/todos"> All To-Do's </a></li>
+        <li><a href="{% url 'todo-create' %}">Add a Todo</a></li>
       </ul>
     </nav>
   </header>

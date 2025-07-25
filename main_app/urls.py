@@ -8,7 +8,11 @@ urlpatterns = [
     # Routes will be added here
     path('', views.home, name='home'), #defines root path and maps it to the view.home
     path('about/',views.about, name='about'),
-    path('todos/', views.todos_index, name= 'todos-index'), 
+    path('todos/', views.todo_index, name= 'todos-index'),
+    path('todos/<int:todo_id>/', views.todo_detail, name='todo-detail'),
+    path('todos/create/', views.TodoCreate.as_view(), name= 'todo-create'),
+    path('todos/<int:pk>/update/', views.TodoUpdate.as_view(), name="todo-update"),
+    path('todo/<int:pk>/delete/', views.TodoDelete.as_view(), name ="todo-delete"),
 ]
 
 #view function is similar to the route handler in express

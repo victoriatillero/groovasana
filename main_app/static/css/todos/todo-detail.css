@@ -1,0 +1,61 @@
+.todo-container {
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-img {
+  width: 75%;
+  max-width: 350px;
+}
+
+.todo-img img {
+  width: 100%;
+  border-radius: var(--card-border-radius);
+}
+
+.todo-details {
+  width: 98%;
+  text-align: center;
+}
+
+.todo-details h1 {
+  font-size: var(--font-xxl);
+  margin: 15px 0 3px;
+}
+
+.todo-details h2 {
+  font-size: var(--font-xl);
+  margin: 0 0 10px;
+}
+
+.todo-details h3 {
+  margin: 10px 0;
+  font-size: var(--font-l);
+}
+
+.todo-details p {
+  font-size: var(--font-reg);
+  margin: 5px 0;
+}
+.todo-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.todo-actions .btn {
+  min-width: 100px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .todo-container {
+    padding: 35px 30px;
+    flex-direction: row;
+    align-items: flex-star;
+  }
+}

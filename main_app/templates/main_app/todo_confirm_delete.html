@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Delete Todo?</h1>
+  <img src="{% static 'images/Scared_Checklist.png' %}" alt="Scared Kawaii Checklist" />
+</div>
+
+<h2>Are you sure you want to delete {{ todo.name }}?</h2>
+
+<form action="" method="post" class="form">
+  {% csrf_token %}
+  <a href="{% url 'todo-detail' todo.id %}" class="btn secondary">Cancel</a>
+  <button type="submit" class="btn danger">Yes - Delete!</button>
+</form>
+
+{% endblock %}

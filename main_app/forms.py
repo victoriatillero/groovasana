@@ -4,9 +4,15 @@ from .models import Todo
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ['name', 'description', 'day', 'priority', 'esttime', 'category']
+        fields = ['name', 'description', 'day', 'priority', 'esttime']
+        labels = {
+            'esttime': 'Estimated Time'
+        }
         widgets = {
-            'day': forms.DateInput(attrs={'type':'date'})
+            'day': forms.DateInput(attrs={'type':'date'}),
+            'esttime': forms.TextInput(attrs={
+                'placeholder': 'hh:mm:ss'
+            })
         }
 class TodoCategoryForm(forms.ModelForm):
     class Meta:

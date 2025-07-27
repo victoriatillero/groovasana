@@ -5,14 +5,10 @@
 />
 {% endblock %} {% block content %}
 
-<section class="logo-container">
-  <div class="todo-container">
-    <img
-      src="{% static 'images/full.svg' %}"
-      alt="Groovasana"
-    />
-  </div>
+<section>
+  <img src="{% static 'images/groovasana.png' %}" alt="Groovasana" class="logo-img" />
 </section>
+
 {% if not user.is_authenticated %}
   <section>
     <form method="post" class="login">

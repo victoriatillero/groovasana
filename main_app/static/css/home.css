@@ -1,86 +1,63 @@
 main {
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  height: 100%;
+  align-items: flex-start;
+  gap: 48px;
+  min-height: 100vh;
+  padding-top:200px;
+  background-color: #ECEAFB;
+
 }
 
 main > section {
-  width: 100%;
-  padding: 10px 8px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 }
 
-.header-logo-container {
-  display: none;
-}
-
-.logo-container {
-  max-width: 375px;
-}
-
-.todo-container {
-  width: 80%;
+.logo-img {
+  width: 400px;
+  max-width: 100%;
+  margin-top: 60px;
+  height: auto;
+  display: block;
 }
 
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 80%;
+  align-items: flex-start;
+  padding: 24px;
+  border-radius: 12px;
 }
 
 .login h1 {
-  font-size: clamp(3.2rem, 3vw, 4.8rem);
-  margin: 10px 0;
-}
-
-.login > p {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 14px 0 0px;
+  font-size: 2rem;
+  margin-bottom: 16px;
 }
 
 .login label {
-  font-size: var(--font-reg);
-  margin-bottom: 6px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font-size: 1rem;
 }
 
 .login input {
-  font-size: var(--font-l);
-  padding: 2px 4px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .login .btn {
   align-self: flex-end;
-  margin-right: 0;
   margin-top: 16px;
-}
-
-@media only screen and (min-width: 768px) {
-  main {
-    justify-content: space-around;
-  }
-
-  main > section {
-    width: 40%;
-  }
-
-  .login {
-    border: var(--borders);
-    padding: 20px;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
-    width: 100%;
-  }
-
-  .logo-container {
-    max-width: 520px;
-  }
+  padding: 6px 12px;
+  background-color: #F9FBD0;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #41164f;
+  cursor: pointer;
 }

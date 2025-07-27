@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/todos/todo-index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Completed Todos</h1>
+  {% for category in categories %}
+    <a href="{% url 'todos-index' %}?category={{ category.name }}">
+      <img src="{% static category.image %}" alt="{{ category.get_name_display }}">
+    </a>
+  {% endfor %}
+</section>
+
+<section class="card-container">
+  {% for todo in todos %}
+    <div class="card-img-card">
+      <a href="{% url 'todo-detail' todo.id %}">
+        <div class="card-content">
+          <div class="text-zone">
+            <div class="title-with-icon">
+              {% if todo.category %}
+                <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
+              {% endif %}
+              <h2>{{ todo.name }}</h2>
+            </div>
+            <p><strong>Due:</strong> {{ todo.day }}</p>
+            <p class="priority-line {{ todo.get_priority_display|lower }}">
+              <strong>Priority:</strong> {{ todo.get_priority_display }}
+            </p>
+            <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
+            <p><small>{{ todo.description }}</small></p>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -23,6 +23,16 @@
      <div class="todo-buttons">
     <a href="{% url 'todo-update' todo.id %}" class="btn warn">Edit</a>
     <a href="{% url 'todo-delete' todo.id %}" class="btn danger">Delete</a>
+    <form action="{% url 'toggle-todo' todo.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn complete">
+        {% if todo.is_completed %}
+          Mark Incomplete
+        {% else %}
+          Mark Complete
+        {% endif %}
+    </button>
+</form>
   </div>
 
     <div class="task-meta-section">

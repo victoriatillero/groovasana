@@ -18,7 +18,7 @@ def about(request):
 
 @login_required
 def todo_index(request):
-    todos= Todo.objects.filter(user=request.user)
+    todos= Todo.objects.filter(user=request.user, is_completed=False)
     category_name = request.GET.get('category')
     if category_name:
         todos = todos.filter(category__name=category_name)
@@ -26,6 +26,10 @@ def todo_index(request):
     categories= Category.objects.all()
     return render(request, 'todos/index.html',{'todos': todos,'categories': categories})
 
+@login_required
+def completed_todos(request):
+    todos= Todo.objects.filter(user=request.user, is_completed=True)
+    return render(request, 'todos/completed.html', {'todos': todos})
 def todo_detail(request, todo_id):
     todo = Todo.objects.get(id=todo_id)
     if request.method == 'POST':
@@ -58,6 +62,12 @@ class TodoUpdate(UpdateView):
 class TodoDelete(DeleteView):
     model = Todo
     success_url= '/todos/'
+
+def toggle_todo(request, todo_id):
+    todo = get_object_or_404(Todo, id=todo_id, user=request.user)
+    todo.is_completed = not todo.is_completed
+    todo.save()
+    return redirect('todos-index')
 
 class Home(LoginView):
     template_name = 'home.html'

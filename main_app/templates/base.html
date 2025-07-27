@@ -24,6 +24,7 @@
           <li> <a href="/todos"> All To-Do's </a></li>
           <li><a href="{% url 'todo-create' %}">Add a Todo</a></li>
           <li><a href="/about">About</a></li>
+          <li><a href="{% url 'completed-todos' %}">Completed</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}

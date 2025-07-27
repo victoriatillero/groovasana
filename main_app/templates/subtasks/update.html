@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/subtask.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Edit Subtask</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn submit">Save Changes</button>
+</form>
+<a href="{% url 'todo-detail' subtask.todo.id %}" class="btn secondary">Cancel</a>
+{% endblock %}

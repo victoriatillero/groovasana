@@ -261,3 +261,14 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   height: 250px;
 }
+
+.subtask-actions {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+}
+

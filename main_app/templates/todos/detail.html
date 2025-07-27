@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/todos/todo-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/todos/todo-detail.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -43,6 +43,17 @@
             <li>
               <span class="subtask-circle {% if subtask.is_completed %}checked{% endif %}" data-id="{{ subtask.id }}"></span>
               {{ subtask.name }}
+              <div class="subtask-actions">
+                <a href="{% url 'subtask-update' subtask.id %}" class="icon-btn">
+                  <i class="fa-solid fa-pencil"></i>
+                </a>
+                <form action="{% url 'subtask-delete' subtask.id %}" method="POST" class="icon-form">
+                  {% csrf_token %}
+                  <button class="icon-btn" onclick="return confirm('Delete this subtask?')">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
             </li>
           {% empty %}
             <li><em>No subtasks yet</em></li>

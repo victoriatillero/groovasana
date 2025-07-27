@@ -11,6 +11,8 @@ urlpatterns = [
     path('todo/<int:pk>/delete/', views.TodoDelete.as_view(), name='todo-delete'),
     path('todos/<int:todo_id>/add-subtask/', views.add_subtask, name='add-subtask'),
     path('subtasks/<int:subtask_id>/toggle/', views.toggle_subtask, name='toggle-subtask'),
+    path('subtasks/<int:pk>/update/', views.subtask_update,name='subtask-update' ),
+    path('subtasks/<int:pk>/delete/', views.subtask_delete, name='subtask-delete'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]

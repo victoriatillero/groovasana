@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 def home(request):
     return render(request, 'home.html')
@@ -90,3 +91,24 @@ def toggle_subtask(request, subtask_id):
     subtask.is_completed = not subtask.is_completed
     subtask.save()
     return JsonResponse({'completed':subtask.is_completed})
+
+
+def subtask_update(request, pk):
+    subtask= get_object_or_404(Subtask, pk=pk)
+
+    if request.method == 'POST':
+        form = SubtaskForm(request.POST, instance=subtask)
+        if form.is_valid():
+            form.save()
+            return redirect ('todo-detail', todo_id= subtask.todo.id)
+    else:
+            form = SubtaskForm(instance=subtask)
+
+    return render(request, 'subtasks/update.html', {'form': form, 'subtask':subtask})
+
+@login_required
+def subtask_delete(request,pk):
+    subtask = get_object_or_404(Subtask, pk=pk)
+    todo_id = subtask.todo.id
+    subtask.delete()
+    return redirect ('todo-detail', todo_id=todo_id)

@@ -22,5 +22,5 @@ class TodoCategoryForm(forms.ModelForm):
 class SubtaskForm(forms.ModelForm):
     class Meta:
         model = Subtask
-        fields = ['name']
+        fields = ['name', 'is_completed']
         

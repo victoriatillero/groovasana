@@ -1,0 +1,31 @@
+.btn {
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 0.4em 1em;
+  border-radius: 0.5em;
+  border: 2px solid transparent;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5em 0.25em;
+  cursor: pointer;
+}
+
+.btn.submit {
+  color: #137c32;
+  border-color: #137c32;
+  background-color: white;
+}
+
+.btn.submit:hover {
+  background-color: #eaf6ea;
+}
+
+.btn.secondary {
+  color: #333;
+  border: 2px solid #333;
+  background-color: white;
+}
+
+.btn.secondary:hover {
+  background-color: #f1f1f1;
+}

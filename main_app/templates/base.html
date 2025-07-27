@@ -18,10 +18,21 @@
     </a>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li> <a href="/todos"> All To-Do's </a></li>
-        <li><a href="{% url 'todo-create' %}">Add a Todo</a></li>
+        {% if user.is_authenticated %}
+          <li> <a href="/todos"> All To-Do's </a></li>
+          <li><a href="{% url 'todo-create' %}">Add a Todo</a></li>
+          <li><a href="/about">About</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+          {% else %}
+            <li><a href="/about">About</a></li>
+            <li><a href="/">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
       </ul>
     </nav>
   </header>

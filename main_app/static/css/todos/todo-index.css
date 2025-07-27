@@ -1,11 +1,14 @@
+/* Container for all cards */
 .card-container {
   padding: 0 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 15px; /* Added spacing between cards */
 }
 
-.card-img-card{
+/* Individual card */
+.card-img-card {
   position: relative;
   width: 275px;
   height: 300px;
@@ -18,15 +21,22 @@
   box-shadow: none;
   background-color: transparent;
   overflow: hidden;
+  transition: transform 0.2s ease; /* Small hover effect */
 }
 
-.card-img-card img{
+.card-img-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image inside card (not the icon) */
+.card-img-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position:center-top;
-  display:block;
+  display: block;
 }
+
+/* Overlay (optional use if needed) */
 .card-img-card .overlay {
   position: absolute;
   top: 0;
@@ -35,32 +45,17 @@
   padding: 12px;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   overflow-y: auto;
 }
-/*
- .card-img-card .text-zone {
-  position: absolute;
-  top: 25%;
-  left: 20%;
-  width: 55%;
-  height: 60%;
-  color: white;
-  overflow: hidden;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  line-height: 1.1;
-  color: #000;
-} */
- .text-zone {
+
+/* Text zone */
+.text-zone {
   position: absolute;
   top: 30%;
   left: 32%;
   width: 52%;
   height: 60%;
-  /* line-height: .4; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -68,23 +63,74 @@
   text-align: left;
   font-size: 0.9rem;
   padding: 5px;
-  /* background-color: rgba(0,0,0,.2); */
   overflow-wrap: break-word;
-  transform: skew(-2deg)
+  transform: skew(-2deg);
 }
 
+/* Heading and text spacing */
 .text-zone h2,
 .text-zone p,
 .text-zone small {
-  margin: 3px 0;
-  line-height: 1;
-}
-.text-zone h2 {
-  margin-top: 5px;
-  margin-bottom: 3px;
+  margin: 2px 0;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
+.text-zone h2 {
+  font-size: 14px;
+  padding-top: 4px;
+  margin-bottom: 3px;
+}
+.text-zone p {
+  font-size: 12px;
+}
+
+.text-zone small {
+  font-size: 10px;
+}
+
+/* Priority line styling */
 .priority-line {
-  color: rgb(139, 17, 17);
   font-weight: bold;
+}
+
+.priority-line.high {
+  color: red;
+}
+
+.priority-line.medium {
+  color: orange;
+}
+
+.priority-line.low {
+  color: green;
+}
+
+.priority-line.none {
+  color: black;
+}
+
+/* Title with icon */
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Space between icon and title */
+  margin-bottom: 5px;
+}
+
+.title-with-icon h2 {
+  margin: 8px;
+}
+
+/* Category icon styling */
+.category-icon {
+  max-width: 28px;
+  max-height: 28px;
+  width: auto;
+  height: auto;
+  display: block;
 }

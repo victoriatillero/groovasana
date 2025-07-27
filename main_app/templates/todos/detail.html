@@ -7,17 +7,28 @@
 {% block content %}
 <section class="todo-container">
   <div class="todo-img">
-    <img src="{% static 'images/clip-board.jpg' %}" alt="Todo Icon" />
+    <img  src="{% static 'images/clipboard.jpg' %}" alt="Todo Icon" />
   </div>
   <div class="todo-details">
+    <form method="POST" class="category-form">
+      {% csrf_token %}
+      <h3 class="category-label"> Update Category!</h3>
+      <p>{{ category_form.category }} </p>
+      <button type="submit" class="btn submit">Update Category</button>
+    </form>
+    {% if todo.category %}
+      <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
+    {% else %}
+      <p><em>No category assigned yet</em></p>
+{% endif %}
+
     <h1>{{ todo.name }}</h1>
-    <h2>Priority: {{ todo.priority }}</h2>
+    <h2 class="priority-line {{ todo.get_priority_display| lower }}">Priority: {{todo.get_priority_display}} </h2>
     <h3>Due: {{ todo.day }}</h3>
-    <p><strong>Tags:</strong> {{ todo.tags }}</p>
     <p><strong>Estimated Time:</strong> {{ todo.esttime }}</p>
     <p>{{ todo.description }}</p>
   </div>
-  
+
     <div class="todo-actions">
         <a href="{% url 'todo-update' todo.id %}" class="btn warn">Edit</a>
         <a href="{% url 'todo-delete' todo.id %}" class="btn danger">Delete</a>

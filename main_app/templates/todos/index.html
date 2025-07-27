@@ -8,30 +8,46 @@
   <h1>To Do List</h1>
   <img
     src="{% static 'images/tags/briefcase .png' %}"
-    alt="Professional tasks"
+    alt="work icon"
   />
   <img
     src="{% static 'images/tags/studying.png' %}"
-    alt="study tasks"
+    alt="learning icon"
     />
     <img
       src="{% static 'images/tags/creative_projects.png' %}"
-      alt="Creative Projects"
+      alt="Creative icon"
+    />
+    <img
+      src="{% static 'images/tags/travel.png' %}"
+      alt="travel icon"
+    />
+    <img
+      src="{% static 'images/tags/home.png' %}"
+      alt="home icon"
     />
     <img
       src="{% static 'images/tags/self-care.png' %}"
-      alt="self-care Tasks"
+      alt="wellness icon"
+    />
+    <img
+      src="{% static 'images/tags/health.png' %}"
+      alt="health icon"
     />
     <img src="{% static 'images/tags/recipe.png' %}"
-    alt="frying pan"
+    alt="food icon"
     />
   <img
     src="{% static 'images/tags/friendship.png' %}"
-    alt="friendship tasks"
+    alt="social icon"
+  />
+  <img
+    src="{% static 'images/tags/family.png' %}"
+    alt="family icon"
   />
   <img
     src="{% static 'images/tags/relationship.png' %}"
-    alt="Relationship Tasks"
+    alt="Relationship icon"
   />
 </section>
 
@@ -42,9 +58,16 @@
     <div class="card-content">
         <!-- <div class="overlay"> -->
         <div class="text-zone">
+          <div class="title-with-icon">
+          {% if todo.category %}
+            <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
+          {% endif %}
           <h2>{{ todo.name }}</h2>
+        </div>
           <p><strong>Due:</strong> {{ todo.day }}</p>
-          <p class="priority-line"><strong>Priority:</strong> {{ todo.priority }}</p> <p><strong>Tags:</strong> {{ todo.tags }}</p>
+          <p class="priority-line {{todo.get_priority_display|lower}}">
+            <strong>Priority:</strong> {{ todo.get_priority_display }}
+          </p>
           <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
           <p><small>{{ todo.description }}</small></p>
         </div>

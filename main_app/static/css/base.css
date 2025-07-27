@@ -74,6 +74,7 @@ nav li {
 
 nav a,
 #logout-form button {
+  all:unset;
   text-decoration: none;
   color: #4e785f;
   font-weight: 600;

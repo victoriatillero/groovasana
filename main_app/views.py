@@ -30,8 +30,10 @@ def todo_index(request):
 def completed_todos(request):
     todos= Todo.objects.filter(user=request.user, is_completed=True)
     return render(request, 'todos/completed.html', {'todos': todos})
+
+@login_required
 def todo_detail(request, todo_id):
-    todo = Todo.objects.get(id=todo_id)
+    todo = get_object_or_404 ( Todo, id=todo_id, user = request.user)
     if request.method == 'POST':
         category_form = TodoCategoryForm(request.POST, instance=todo)
         if category_form.is_valid():
@@ -48,6 +50,7 @@ def todo_detail(request, todo_id):
         'subtask_form': subtask_form,
         })
 
+
 class TodoCreate(LoginRequiredMixin, CreateView):
     model = Todo
     form_class = TodoForm
@@ -55,14 +58,17 @@ class TodoCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class TodoUpdate(UpdateView):
+
+class TodoUpdate(LoginRequiredMixin, UpdateView):
     model = Todo
     form_class = TodoForm
 
-class TodoDelete(DeleteView):
+
+class TodoDelete(LoginRequiredMixin, DeleteView):
     model = Todo
     success_url= '/todos/'
 
+@login_required
 def toggle_todo(request, todo_id):
     todo = get_object_or_404(Todo, id=todo_id, user=request.user)
     todo.is_completed = not todo.is_completed
@@ -86,8 +92,9 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
 
+@login_required
 def add_subtask(request, todo_id):
-    todo = Todo.objects.get(id=todo_id)
+    todo = get_object_or_404(Todo, id=todo_id, user=request.user)
     if request.method == 'POST':
         form = SubtaskForm(request.POST)
         if form.is_valid():
@@ -96,15 +103,16 @@ def add_subtask(request, todo_id):
             new_subtask.save()
     return redirect('todo-detail', todo_id=todo.id)
 
+@login_required
 def toggle_subtask(request, subtask_id):
-    subtask = Subtask.objects.get(id=subtask_id)
+    subtask = get_object_or_404( Subtask, id=subtask_id, todo__user=request.user)
     subtask.is_completed = not subtask.is_completed
     subtask.save()
     return JsonResponse({'completed':subtask.is_completed})
 
-
+@login_required
 def subtask_update(request, pk):
-    subtask= get_object_or_404(Subtask, pk=pk)
+    subtask= get_object_or_404(Subtask, pk=pk, todo__user= request.user)
 
     if request.method == 'POST':
         form = SubtaskForm(request.POST, instance=subtask)
@@ -118,7 +126,7 @@ def subtask_update(request, pk):
 
 @login_required
 def subtask_delete(request,pk):
-    subtask = get_object_or_404(Subtask, pk=pk)
+    subtask = get_object_or_404(Subtask, pk=pk, todo__user=request.user)
     todo_id = subtask.todo.id
     subtask.delete()
     return redirect ('todo-detail', todo_id=todo_id)

@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import TodoForm, TodoCategoryForm
+from .forms import TodoForm, TodoCategoryForm, SubtaskForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Todo
+from .models import Todo, Subtask
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 def home(request):
     return render(request, 'home.html')
@@ -28,9 +29,13 @@ def todo_detail(request, todo_id):
             return redirect('todo-detail', todo_id =todo.id)
     else:
         category_form = TodoCategoryForm(instance=todo)
+
+    subtask_form = SubtaskForm()
+
     return render(request, 'todos/detail.html', {
         'todo': todo,
-        'category_form':category_form
+        'category_form':category_form,
+        'subtask_form': subtask_form,
         })
 
 class TodoCreate(LoginRequiredMixin, CreateView):
@@ -64,3 +69,19 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
+
+def add_subtask(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    if request.method == 'POST':
+        form = SubtaskForm(request.POST)
+        if form.is_valid():
+            new_subtask = form.save(commit=False)
+            new_subtask.todo = todo
+            new_subtask.save()
+    return redirect('todo-detail', todo_id=todo.id)
+
+def toggle_subtask(request, subtask_id):
+    subtask = Subtask.objects.get(id=subtask_id)
+    subtask.is_completed = not subtask.is_completed
+    subtask.save()
+    return JsonResponse({'completed':subtask.is_completed})

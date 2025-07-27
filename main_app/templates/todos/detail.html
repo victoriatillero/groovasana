@@ -7,33 +7,59 @@
 {% block content %}
 <section class="todo-container">
   <div class="todo-img">
-    <img  src="{% static 'images/clipboard.jpg' %}" alt="Todo Icon" />
+    <img src="{% static 'images/clipboard.png' %}" alt="Todo Icon" />
   </div>
-  <div class="todo-details">
-    <form method="POST" class="category-form">
-      {% csrf_token %}
-      <h3 class="category-label"> Update Category!</h3>
-      <p>{{ category_form.category }} </p>
-      <button type="submit" class="btn submit">Update Category</button>
-    </form>
-    {% if todo.category %}
-      <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
-    {% else %}
-      <p><em>No category assigned yet</em></p>
-{% endif %}
-
-    <h1>{{ todo.name }}</h1>
-    <h2 class="priority-line {{ todo.get_priority_display| lower }}">Priority: {{todo.get_priority_display}} </h2>
-    <h3>Due: {{ todo.day }}</h3>
-    <p><strong>Estimated Time:</strong> {{ todo.esttime }}</p>
-    <p>{{ todo.description }}</p>
-  </div>
-
-    <div class="todo-actions">
-        <a href="{% url 'todo-update' todo.id %}" class="btn warn">Edit</a>
-        <a href="{% url 'todo-delete' todo.id %}" class="btn danger">Delete</a>
+    <div class="todo-and-subtasks">
+    <div class="todo-details">
+      {% if todo.category %}
+        <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
+      {% endif %}
+      <h1>{{ todo.name }}</h1>
+      <h2 class="priority-line {{ todo.get_priority_display|lower }}">Priority: {{ todo.get_priority_display }}</h2>
+      <h3>Due: {{ todo.day }}</h3>
+      <p><strong>Estimated Time:</strong> {{ todo.esttime }}</p>
+      <p>{{ todo.description }}</p>
     </div>
-</div>
+     <div class="todo-buttons">
+    <a href="{% url 'todo-update' todo.id %}" class="btn warn">Edit</a>
+    <a href="{% url 'todo-delete' todo.id %}" class="btn danger">Delete</a>
+  </div>
 
+    <div class="task-meta-section">
+
+      <div class="category-box">
+        <form method="POST" class="category-form">
+          {% csrf_token %}
+          <h3 class="category-label">Update Category!</h3>
+          <p>{{ category_form.category }}</p>
+          <button type="submit" class="btn category-btn">Update Category</button>
+        </form>
+      </div>
+
+      <section class="subtasks-container">
+        <h3>Subtasks</h3>
+        <ul>
+          {% for subtask in todo.subtasks.all %}
+            <li>
+              <span class="subtask-circle {% if subtask.is_completed %}checked{% endif %}" data-id="{{ subtask.id }}"></span>
+              {{ subtask.name }}
+            </li>
+          {% empty %}
+            <li><em>No subtasks yet</em></li>
+          {% endfor %}
+        </ul>
+
+        <form action="{% url 'add-subtask' todo.id %}" method="POST" class="subtask-form">
+          {% csrf_token %}
+          <div class="subtask-fields">
+            <input type="text" name="name" placeholder="Add a subtask..." class="subtask-input" />
+            <button type="submit" class="btn subtask-btn">Add Subtask</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
 </section>
+
+<script src="{% static 'js/subtasks.js' %}"></script>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Todo
+from .models import Todo, Subtask
 
 class TodoForm(forms.ModelForm):
     class Meta:
@@ -18,3 +18,9 @@ class TodoCategoryForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields = ['category']
+
+class SubtaskForm(forms.ModelForm):
+    class Meta:
+        model = Subtask
+        fields = ['name']
+        

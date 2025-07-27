@@ -49,3 +49,11 @@ class Category(models.Model):
 
         def __str__(self):
                 return self.get_name_display()
+
+class Subtask(models.Model):
+    name = models.CharField(max_length=100)
+    is_completed = models.BooleanField(default=False)
+    todo = models.ForeignKey(Todo, on_delete=models.CASCADE, related_name='subtasks')
+
+    def __str__(self):
+           return self.name

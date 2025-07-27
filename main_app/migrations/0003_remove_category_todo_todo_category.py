@@ -7,17 +7,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0002_remove_todo_tags_category'),
+        ("main_app", "0002_remove_todo_tags_category"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='category',
-            name='todo',
+            model_name="category",
+            name="todo",
         ),
         migrations.AddField(
-            model_name='todo',
-            name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='main_app.category'),
+            model_name="todo",
+            name="category",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="main_app.category",
+            ),
         ),
     ]

@@ -7,21 +7,52 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0001_initial'),
+        ("main_app", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='todo',
-            name='tags',
+            model_name="todo",
+            name="tags",
         ),
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(choices=[('WO', 'Work'), ('LE', 'Learning'), ('CR', 'Creative'), ('TR', 'Travel'), ('HO', 'Home'), ('WE', 'Wellness'), ('HE', 'Health'), ('FO', 'Food'), ('SO', 'Social'), ('FA', 'Family'), ('RE', 'Relationship')], max_length=2)),
-                ('image', models.CharField(max_length=255)),
-                ('todo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main_app.todo')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        choices=[
+                            ("WO", "Work"),
+                            ("LE", "Learning"),
+                            ("CR", "Creative"),
+                            ("TR", "Travel"),
+                            ("HO", "Home"),
+                            ("WE", "Wellness"),
+                            ("HE", "Health"),
+                            ("FO", "Food"),
+                            ("SO", "Social"),
+                            ("FA", "Family"),
+                            ("RE", "Relationship"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                ("image", models.CharField(max_length=255)),
+                (
+                    "todo",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="main_app.todo"
+                    ),
+                ),
             ],
         ),
     ]

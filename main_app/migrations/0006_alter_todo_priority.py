@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0005_alter_todo_options_alter_todo_priority'),
+        ("main_app", "0005_alter_todo_options_alter_todo_priority"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='todo',
-            name='priority',
-            field=models.CharField(choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low'), ('None', 'None')], default='None', max_length=10),
+            model_name="todo",
+            name="priority",
+            field=models.CharField(
+                choices=[
+                    ("High", "High"),
+                    ("Medium", "Medium"),
+                    ("Low", "Low"),
+                    ("None", "None"),
+                ],
+                default="None",
+                max_length=10,
+            ),
         ),
     ]

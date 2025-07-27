@@ -6,17 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0003_remove_category_todo_todo_category'),
+        ("main_app", "0003_remove_category_todo_todo_category"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='todo',
-            options={'ordering': ['priority', '-day']},
+            name="todo",
+            options={"ordering": ["priority", "-day"]},
         ),
         migrations.AlterField(
-            model_name='todo',
-            name='priority',
-            field=models.CharField(choices=[('None', 'None'), ('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], default='None', max_length=10),
+            model_name="todo",
+            name="priority",
+            field=models.CharField(
+                choices=[
+                    ("None", "None"),
+                    ("Low", "Low"),
+                    ("Medium", "Medium"),
+                    ("High", "High"),
+                ],
+                default="None",
+                max_length=10,
+            ),
         ),
     ]

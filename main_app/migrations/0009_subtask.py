@@ -7,17 +7,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0008_todo_user'),
+        ("main_app", "0008_todo_user"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Subtask',
+            name="Subtask",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('is_completed', models.BooleanField(default=False)),
-                ('todo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subtasks', to='main_app.todo')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("is_completed", models.BooleanField(default=False)),
+                (
+                    "todo",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="subtasks",
+                        to="main_app.todo",
+                    ),
+                ),
             ],
         ),
     ]

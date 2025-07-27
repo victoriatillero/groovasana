@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import TodoForm, TodoCategoryForm, SubtaskForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Todo, Subtask
+from .models import Todo, Subtask, Category
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -18,7 +18,12 @@ def about(request):
 @login_required
 def todo_index(request):
     todos= Todo.objects.filter(user=request.user)
-    return render(request, 'todos/index.html', {'todos': todos})
+    category_name = request.GET.get('category')
+    if category_name:
+        todos = todos.filter(category__name=category_name)
+
+    categories= Category.objects.all()
+    return render(request, 'todos/index.html',{'todos': todos,'categories': categories})
 
 def todo_detail(request, todo_id):
     todo = Todo.objects.get(id=todo_id)

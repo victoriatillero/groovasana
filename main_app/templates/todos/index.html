@@ -11,7 +11,6 @@
   {% for category in categories %}
     <a href="{% url 'todos-index' %}?category={{ category.name }}">
       <img src="{% static category.image %}" alt="{{ category.get_name_display }}">
-      <p>{{ category.image }}</p>
     </a>
   {% endfor %}
 </section>

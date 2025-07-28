@@ -2,7 +2,7 @@
 ![Groovasana Logo](main_app/static/images/groovasana.png)
 
 ## **Getting Started** ##
-[Link to deployed application]
+[Link to deployed application](https://groovasana-2b1896f660ee.herokuapp.com/)
 
 [Planning Materials](https://trello.com/b/sRjEU0UR/unit-4-project)
 
@@ -45,4 +45,4 @@ Groovasana will always have room to grow! Here are some planned enhancements:
 - Inline Subtask Editing: Rather than having a separate page for editing subtasks, replace it with a JavaScript event listener, allowing users to update subtasks directly on the todo detail page for a smoother workflow.
 - Repeatable To Dos: Introduce recurring tasks for building daily routines or habit tracking
 - Integrated Timer: Add a built in timer on the todo details page, synced with each todo's estimated time field to support time management, accountability, and reduce time blindness.
-UI/UX Enhancements: Refine CSS to better align with the original wireframes (see Trello board) and improve overall visual consistency. 
+UI/UX Enhancements: Refine CSS to better align with the original wireframes (see Trello board) and improve overall visual consistency.

@@ -8,7 +8,7 @@ CATEGORIES = (
     ("CR", "Creative"),
     ("TR", "Travel"),
     ("HO", "Home"),
-    ("WE", "Wellness"),
+    ("SC", "Self-Care"),
     ("HE", "Health"),
     ("FO", "Food"),
     ("SO", "Social"),

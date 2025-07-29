@@ -16,27 +16,36 @@
 </section>
 
 <section class="card-container">
-  {% for todo in todos %}
-    <div class="card-img-card">
-      <a href="{% url 'todo-detail' todo.id %}">
-        <div class="card-content">
-          <div class="text-zone">
-            <div class="title-with-icon">
-              {% if todo.category %}
-                <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
-              {% endif %}
-              <h2>{{ todo.name }}</h2>
+  {% if todos %}
+    {% for todo in todos %}
+      <div class="card-img-card">
+        <a href="{% url 'todo-detail' todo.id %}">
+          <div class="card-content">
+            <div class="text-zone">
+              <div class="title-with-icon">
+                {% if todo.category %}
+                  <img class="category-icon" src="{% static todo.category.image %}" alt="{{ todo.category.get_name_display }}">
+                {% endif %}
+                <h2>{{ todo.name }}</h2>
+              </div>
+              <p><strong>Due:</strong> {{ todo.day }}</p>
+              <p class="priority-line {{ todo.get_priority_display|lower }}">
+                <strong>Priority:</strong> {{ todo.get_priority_display }}
+              </p>
+              <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
+              <p><small>{{ todo.description }}</small></p>
             </div>
-            <p><strong>Due:</strong> {{ todo.day }}</p>
-            <p class="priority-line {{ todo.get_priority_display|lower }}">
-              <strong>Priority:</strong> {{ todo.get_priority_display }}
-            </p>
-            <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
-            <p><small>{{ todo.description }}</small></p>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div classs="empty-todos-container">
+      <img src="{% static 'images/meditating.png' %}" alt="Meditating icon">
+      <p class="no-todos-msg">
+        A calm mind begins with a clear path. <br> Add a new task to get started!
+      </p>
     </div>
-  {% endfor %}
+  {% endif %}
 </section>
 {% endblock %}

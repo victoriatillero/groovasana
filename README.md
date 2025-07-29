@@ -29,7 +29,9 @@ This project was built as part of my bootcamp with General Assembly. I wanted to
     - [Trash Icon](https://fontawesome.com/icons/trash?s=solid)
     - [Pencil Icon](https://fontawesome.com/icons/pencil?f=classic&s=solid)
 
-Vecteezy: [Clipboard](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F6795707-cute-funny-clip-board-character-vector-hand-drawn-cartoon-kawaii-character-illustration-icon-isolated-on-white-background-clip-board-character-concept&psig=AOvVaw3pRdf04hMa0D1b9lJ_tqqk&ust=1753748507806000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPjyi7mk3o4DFQAAAAAdAAAAABAW)
+- Vecteezy:
+    - [Clipboard](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F6795707-cute-funny-clip-board-character-vector-hand-drawn-cartoon-kawaii-character-illustration-icon-isolated-on-white-background-clip-board-character-concept&psig=AOvVaw3pRdf04hMa0D1b9lJ_tqqk&ust=1753748507806000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPjyi7mk3o4DFQAAAAAdAAAAABAW)
+    - [Meditating Person](https://static.vecteezy.com/system/resources/thumbnails/020/271/333/small_2x/yoga-position-silhouette-and-line-icon-set-meditate-relax-pictogram-spiritual-chakra-zen-icon-calm-aura-galaxy-serenity-and-health-body-editable-stroke-isolated-illustration-vector.jpg)
 
 ## Technologies Used ##
 **Backend:** Python, Django

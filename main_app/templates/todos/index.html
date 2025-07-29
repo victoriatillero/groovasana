@@ -34,6 +34,13 @@
               </p>
               <p><strong>Est. Time:</strong> {{ todo.esttime }}</p>
               <p><small>{{ todo.description }}</small></p>
+              {% if todo.total_subtasks > 0 %}
+                <div class="progress-container">
+                  <div class= "progress-bar" style="width: {% widthratio todo.completed_subtasks todo.total_subtasks 100 %}%;">
+                  </div>
+                </div>
+                <p class="progress-label"><small>{{ todo.completed_subtasks}} of {{ todo.total_subtasks }} subtasks complete</small></p>
+              {% endif %}
             </div>
           </div>
         </a>

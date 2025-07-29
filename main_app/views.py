@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-
+from django.db.models import Count, Q
 
 def home(request):
     return render(request, "home.html")
@@ -25,6 +25,11 @@ def todo_index(request):
     category_name = request.GET.get("category")
     if category_name:
         todos = todos.filter(category__name=category_name)
+
+    todos= todos.annotate(
+        total_subtasks=Count('subtasks'),
+        completed_subtasks=Count('subtasks', filter=Q(subtasks__is_completed=True))
+    )
 
     categories = Category.objects.all()
     return render(

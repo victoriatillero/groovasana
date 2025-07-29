@@ -39,8 +39,12 @@ def todo_index(request):
 
 @login_required
 def completed_todos(request):
-    todos = Todo.objects.filter(user=request.user, is_completed=True)
-    return render(request, "todos/completed.html", {"todos": todos})
+    todos = Todo.objects.filter(user=request.user, is_completed=True).annotate(
+        completed_subtasks=Count('subtasks', filter=Q(subtasks__is_completed=True)),
+        total_subtasks=Count('subtasks')
+    )
+    categories=Category.objects.all()
+    return render(request, "todos/completed.html", {"todos": todos, 'categories':categories})
 
 
 @login_required
